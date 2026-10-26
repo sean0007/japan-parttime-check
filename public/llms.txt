@@ -1,0 +1,54 @@
+# Japan Part-time Work Check
+
+> Free, unofficial checker for Japan's permission to work outside your status of residence (資格外活動許可): can this status do this part-time job or side gig, which permission is needed (comprehensive 28-hour or individual), are the hours within the limits, and the 2026-10-01 change for pachinko, mahjong and game centers. Rules as of 2026-10-26.
+
+Site: https://japan-parttime-check.vercel.app
+
+## Rules applied
+- Comprehensive permission (包括許可): Student (留学), Dependent (家族滞在), Designated Activities (dependent of a foreign national; continued job hunting / waiting to join). Up to 28 hours in any 7-day period, all jobs combined. Students: up to 8 hours a day during the school's official long vacation. Card stamp: 許可：原則週28時間以内・風俗営業等の従事を除く.
+- Banned for every permission outside status, every role (incl. dishwashing, cleaning): 風俗営業 (hosting bars, low-light bars, booth seating; pachinko, mahjong, game centers), 特定遊興飲食店営業, sex-related businesses.
+- NEW 2026-10-01: Dependent (家族滞在) holders only may work at venues licensed under 風営法 art. 2(1)(iv)/(v) (pachinko, mahjong, game centers) with an individual permission per venue, even if they already hold the comprehensive permission. Needs employer pledge + applicant pledge, copy of the venue license, document on duties/hours/pay, proof of other side-job hours; all side jobs ≤ 28 h/week. Student and Designated Activities (dependent) excluded. Source: https://www.moj.go.jp/isa/10_00274.html
+- Contractor delivery paid per job: comprehensive permission only if hours can be objectively confirmed; freelance/contract work with unclear hours: individual permission; company, staff or office: change to Business Manager (経営・管理).
+- Student internships over 28 h/week: individual permission for final-year undergrads (~90%+ credits), final-year master's/PhD, or credit-bearing practicums.
+- Work visas: same-field work needs no permission; work of another work status (e.g. Professor teaching at a language school) needs individual permission; simple-labor side jobs generally not permitted.
+- Specified Skilled Worker, Technical Intern Training, Temporary Visitor: no side jobs. Working Holiday: work allowed without cap except 風俗営業 venues. Permanent Resident, Spouse or Child of Japanese/PR, Long-Term Resident: no limit.
+- Procedure: Regional Immigration Services Bureau, no fee, standard processing 2 weeks to 2 months; students entering for 3+ months can get the comprehensive permission at the airport.
+
+## API (keyless, CORS open, JSON)
+GET https://japan-parttime-check.vercel.app/api/check?status=dependent&job=pachinko&permission=comprehensive&weeklyHours=20
+→ verdict "individual_permission", permissionNeeded "individual", documents [application, pledges, venue license copy…], hours.withinLimit true
+
+GET https://japan-parttime-check.vercel.app/api/check?status=student&job=convenience_store&permission=comprehensive&weeklyHours=30
+→ verdict "ok_if_hours" (over 28)
+
+POST https://japan-parttime-check.vercel.app/api/check
+{"status":"student","job":"restaurant","permission":"comprehensive","dailyHours":"8v,8v,8v,8v,8v,0v,0v"}
+→ verdict "ok" (long vacation, ≤ 8 h/day); rolling 7-day windows in hours.windows
+
+Parameters: status (student | dependent | designated_dependent | job_hunting | work_visa | specified_skilled | technical_intern | working_holiday | temporary_visitor | unrestricted; aliases 留学, 家族滞在, tourist, pr…), job (restaurant | izakaya_bar | convenience_store | retail | hotel | factory_warehouse | cleaning | office | language_teacher | interpreter_translator | tutor | delivery_employee | delivery_gig | freelance | internship | pachinko | mahjong | game_center | hostess_bar | nightclub | adult; aliases konbini, uber_eats, eikaiwa, パチンコ…), permission (none | comprehensive | individual | unknown), weeklyHours, dailyHours (comma list, v = long-vacation day), longVacation, enrolled, hasEmployeesOrOffice, internshipEligible, sameCategoryWork.
+Verdicts: ok | ok_if_hours | apply_first | individual_permission | status_change | not_allowed | no_restriction.
+
+## Other endpoints
+- GET https://japan-parttime-check.vercel.app/api/rules
+- https://japan-parttime-check.vercel.app/openapi.json
+- https://japan-parttime-check.vercel.app/.well-known/ai-plugin.json
+- MCP: tool japan_parttime_work_check on https://free-agent-tools.vercel.app/mcp
+
+## Sources
+- https://www.moj.go.jp/isa/applications/procedures/nyuukokukanri07_00045.html (ISA: permission for activities outside status, general)
+- https://www.moj.go.jp/isa/applications/procedures/nyuukokukanri07_00003.html (Student)
+- https://www.moj.go.jp/isa/applications/procedures/nyuukokukanri07_00004.html (Dependent)
+- https://www.moj.go.jp/isa/applications/procedures/nyuukokukanri07_00002.html (Designated Activities)
+- https://www.moj.go.jp/isa/10_00274.html (amusement venues, from 2026-10-01)
+- https://www.moj.go.jp/isa/applications/procedures/16-8.html (procedure, fee, processing time)
+- https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/koyou_roudou/koyou/jigyounushi/seido/anteikyoku/gairou/980908gai01.htm (MHLW employer check)
+
+## Disclaimer
+Educational guide, not legal or immigration advice, not affiliated with the Immigration Services Agency. Only the permission granted to you and ISA decide. Confirm with your Regional Immigration Services Bureau, the Immigration Information Center (0570-013904), your school or a licensed gyoseishoshi.
+
+## Other free tools
+- https://japan-visa-fee.vercel.app (Japan visa fee calculator)
+- https://japan-reentry-check.vercel.app (re-entry deadline)
+- https://japan-pr-check.vercel.app (PR guideline check)
+- https://japan-overseas-dependents.vercel.app (tax deduction for family abroad)
+- https://free-agent-tools.vercel.app (MCP server with all tools)

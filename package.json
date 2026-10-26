@@ -1,0 +1,31 @@
+{
+  "name": "japan-parttime-check",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Free checker for part-time and side jobs on a Japanese status of residence (資格外活動許可): Student, Dependent, work visa, SSW, Working Holiday; 28-hour rule with rolling 7-day windows, 8 h/day long-vacation rule, and the 2026-10-01 pachinko/mahjong/game-center change for Dependent holders. Keyless JSON API + MCP.",
+  "license": "MIT",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint",
+    "test": "node --import tsx --test lib/parttime.test.ts lib/api.test.ts lib/share.test.ts"
+  },
+  "dependencies": {
+    "@vercel/analytics": "^2.0.1",
+    "next": "^16.3.5",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "^16.3.5",
+    "tailwindcss": "^4",
+    "tsx": "^4.23.15",
+    "typescript": "^5"
+  }
+}
