@@ -51,4 +51,5 @@ Educational guide, not legal or immigration advice, not affiliated with the Immi
 - https://japan-reentry-check.vercel.app (re-entry deadline)
 - https://japan-pr-check.vercel.app (PR guideline check)
 - https://japan-overseas-dependents.vercel.app (tax deduction for family abroad)
+- https://japan-driving-check.vercel.app (driving on a foreign license)
 - https://free-agent-tools.vercel.app (MCP server with all tools)
