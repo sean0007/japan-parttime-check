@@ -52,4 +52,5 @@ Educational guide, not legal or immigration advice, not affiliated with the Immi
 - https://japan-pr-check.vercel.app (PR guideline check)
 - https://japan-overseas-dependents.vercel.app (tax deduction for family abroad)
 - https://japan-driving-check.vercel.app (driving on a foreign license)
+- https://house-rules-check.vercel.app (Airbnb house rules check)
 - https://free-agent-tools.vercel.app (MCP server with all tools)
