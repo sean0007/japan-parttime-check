@@ -54,4 +54,5 @@ Educational guide, not legal or immigration advice, not affiliated with the Immi
 - https://japan-driving-check.vercel.app (driving on a foreign license)
 - https://house-rules-check.vercel.app (Airbnb house rules check)
 - https://japan-mynumber-card-check.vercel.app (My Number Card expiry check for foreign residents)
+- https://japan-hsp-points.vercel.app (HSP points calculator for the Highly Skilled Professional visa)
 - https://free-agent-tools.vercel.app (MCP server with all tools)
